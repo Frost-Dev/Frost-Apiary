@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://frost.apiblueprint.org/
 
-# Frost-API
+# Frost-API (日本語)
 
 Frost-APIはすべてのFrostクライアントがコンテンツを利用するためのAPIです。
 
@@ -13,14 +13,15 @@ Frost-APIはすべてのFrostクライアントがコンテンツを利用する
 - application
 
 + Parameters
-    + id: `2` (int, required)
+    + id: `2` (int, required) - application id.
 
 + Response 200 (application/json)
+
         {
             "application": {
-                "id": "2",
-                "created_at": "1470211909",
-                "creator_id": "1",
+                "id": 2,
+                "created_at": 1470211909,
+                "creator_id": 1,
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
                 "permissions": [
