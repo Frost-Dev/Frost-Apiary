@@ -3,23 +3,22 @@ HOST: http://frost.apiblueprint.org/
 
 # Frost-API (日本語)
 
-Frost-APIはすべてのFrostクライアントがコンテンツを利用するためのAPIです。
+- Frost-APIはすべてのFrostクライアントがFrostのコンテンツを利用するためのAPIです。
 
-## アプリケーション [/application/{id}]
+- 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションが指定された権限を持っている必要があります。
 
-### アプリケーション情報を取得 [GET]
 
-#### require permissions
-- application
+# Group IceAuth
 
-+ Parameters
-    + id: `2` (int, required) - application id.
+# Group Application
 
-+ Response 200 (application/json)
+## Application [/application]
+
++ Model (application/json)
 
         {
             "application": {
-                "id": 2,
+                "id": 3,
                 "created_at": 1470211909,
                 "creator_id": 1,
                 "name": "Test",
@@ -35,3 +34,31 @@ Frost-APIはすべてのFrostクライアントがコンテンツを利用する
                 ]
             }
         }
+
+### アプリケーション情報の作成 [POST]
+
+アクセスに必要な権限
+- `application-special`
+
++ Response 200
+
+    [Application][]
+
+## 指定したアプリケーションに対する操作 [/application/{id}]
+
+### アプリケーション情報 [GET]
+#### アクセスに必要な権限
+- `application`
+
++ Parameters
+    + id: `3` (int, required) - application id.
+
++ Response 200 (application/json)
+
+
+
+# Group User
+
+# Group Account
+
+# Group Post
