@@ -24,20 +24,24 @@ HOST: http://frost.apiblueprint.org/
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
                 "permissions": [
-                    "application",
                     "account-read",
-                    "account-write",
                     "user-read",
-                    "user-write",
                     "post-read",
                     "post-write"
                 ]
             }
         }
 
+## アプリケーション [/application{?name,description,permissions}]
+
 ### アプリケーションの作成 [POST]
 #### アクセスに必要な権限
 - `application-special`
+
++ Parameters
+    + name: `Test` (int, required) - アプリケーション名。
+    + description: `"テスト用のアプリケーションです。"` (string, required) - アプリケーションの概要。
+    + permissions: `"account-read,user-read,post-read,post-write"` (string, required) - 要求する権限。
 
 + Response 200
 
