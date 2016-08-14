@@ -10,6 +10,22 @@ HOST: http://frost.apiblueprint.org/
 
 # Group IceAuth
 
+## リクエストキー [/ice-auth/request{?application%2dkey}]
+
+### リクエストキー生成 [POST]
+
+#### アクセスに必要な権限
+- 不要
+
++ Parameters
+    + application%2dkey: `1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1` (string) - アプリケーションキー
+
++ Response 200 (application/json)
+
+        {
+            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+        }
+
 # Group Application
 
 ## アプリケーション [/application]
@@ -65,7 +81,7 @@ HOST: http://frost.apiblueprint.org/
 + Model (application/json)
 
         {
-            "application-key": "hogehoge"
+            "application-key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 ### アプリケーションキーの生成 [POST]
