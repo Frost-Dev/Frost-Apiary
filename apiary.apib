@@ -19,7 +19,7 @@ HOST: http://frost.apiblueprint.org/
         {
             "application": {
                 "id": 3,
-                "created_at": 1470211909,
+                "created_at": 1234567890,
                 "creator_id": 1,
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
@@ -35,6 +35,7 @@ HOST: http://frost.apiblueprint.org/
 ## アプリケーション [/application{?name,description,permissions}]
 
 ### アプリケーションの作成 [POST]
+
 #### アクセスに必要な権限
 - `application-special`
 
@@ -44,12 +45,12 @@ HOST: http://frost.apiblueprint.org/
     + permissions: `"account-read,user-read,post-read,post-write"` (string, required) - 要求する権限。
 
 + Response 200
-
     [アプリケーション][]
 
 ## 指定したアプリケーション [/application/{id}]
 
 ### アプリケーション情報を取得 [GET]
+
 #### アクセスに必要な権限
 - `application`
 
@@ -57,23 +58,20 @@ HOST: http://frost.apiblueprint.org/
     + id: `3` (int, required) - application id.
 
 + Response 200
-
     [アプリケーション][]
 
 ## アプリケーションキー [/application/{id}/application-key]
 
 + Model (application/json)
 
-        {
-            "application-key": "hogehoge"
-        }
+        { "application-key": "hogehoge" }
 
 ### アプリケーションキーの生成 [POST]
+
 #### アクセスに必要な権限
 - `application-special`
 
 + Response 200
-
     [アプリケーションキー][]
 
 # Group User
