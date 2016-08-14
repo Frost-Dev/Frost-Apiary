@@ -222,7 +222,7 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `user-read`
 
-+ Request
++ Request (application/json)
 
         {
             "filter": "all",
@@ -241,7 +241,7 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `account-special`
 
-+ Request
++ Request (application/json)
 
         {
             "screen-name": "hoge",
@@ -255,7 +255,24 @@ HOST: http://frost.apiblueprint.org/
 
 # Group Post
 
-## ポスト [/post]
+## ポスト [/post/{id}]
+
++ Parameters
+    + id: `1` (int) - ポストID。
+
+### ポストを取得 [GET]
+
+#### アクセスに必要な権限
+- `post-read`
+
++ Response 200
+    [ステータスポスト][]
+
++ Response 200
+    [アーティクルポスト][]
+
++ Response 200
+    [リンクポスト][]
 
 ## ステータスポスト [/post/status]
 
@@ -263,7 +280,7 @@ HOST: http://frost.apiblueprint.org/
 
         {
             "id": 1,
-            "created-at": 1234567891
+            "created-at": 1234567891,
             "user-id": 1,
             "post-type": "status",
             "text": "hogehoge"
@@ -274,8 +291,46 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `post-write`
 
++ Request (application/json)
+
+        {
+            "text": "hogehoge"
+        }
+
 + Response 200
     [ステータスポスト][]
+
+## アーティクルポスト [/post/article]
+
++ Model (application/json)
+
+        {
+            "id": 2,
+            "created-at": 1234567892,
+            "user-id": 1,
+            "post-type": "article",
+            "title": "hoge",
+            "description": "description text",
+            "body": "hogehoge",
+            "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+        }
+
+### アーティクルポストを作成 [POST]
+
+#### アクセスに必要な権限
+- `post-write`
+
++ Request (application/json)
+
+        {
+            "title": "hoge",
+            "description": "description text",
+            "body": "hogehoge",
+            "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+        }
+
++ Response 200
+    [アーティクルポスト][]
 
 ## リンクポスト [/post/link-post]
 
@@ -283,13 +338,13 @@ HOST: http://frost.apiblueprint.org/
 
         {
             "id": 3,
-            "created-at": 1234567893
+            "created-at": 1234567893,
             "user-id": 2,
             "post-type": "link-post",
-            "target-post-id": 2
+            "target-post-id": 2,
             "target-post": {
                 "id": 2,
-                "created-at": 1234567892
+                "created-at": 1234567892,
                 "user-id": 1,
                 "post-type": "article",
                 "title": "hoge",
@@ -304,35 +359,11 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `post-write`
 
-+ Response 200
-    [リンクポスト][]
-
-## アーティクルポスト [/post/article]
-
-+ Model (application/json)
++ Request (application/json)
 
         {
-            "id": 3,
-            "created-at": 1234567893
-            "user-id": 2,
-            "post-type": "link-post",
             "target-post-id": 2
-            "target-post": {
-                "id": 2,
-                "created-at": 1234567892
-                "user-id": 1,
-                "post-type": "article",
-                "title": "hoge",
-                "description": "description text",
-                "body": "hogehoge",
-                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
-            }
         }
 
-### アーティクルポストを作成 [POST]
-
-#### アクセスに必要な権限
-- `post-write`
-
 + Response 200
-    [アーティクルポスト][]
+    [リンクポスト][]
