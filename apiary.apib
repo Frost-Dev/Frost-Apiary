@@ -12,7 +12,7 @@ HOST: http://frost.apiblueprint.org/
 
 ## リクエストキー [/ice-auth/request]
 
-### リクエストキー生成 [POST]
+### リクエストキーを生成 [POST]
 
 #### アクセスに必要な権限
 - 不要
@@ -31,7 +31,7 @@ HOST: http://frost.apiblueprint.org/
 
 ## PINコード [/ice-auth/pin-code]
 
-### PINコード取得 [GET]
+### PINコードを取得 [GET]
 
 #### アクセスに必要な権限
 - `ice-auth-host`
@@ -77,8 +77,8 @@ HOST: http://frost.apiblueprint.org/
         {
             "application": {
                 "id": 3,
-                "created_at": 1234567890,
-                "creator_id": 1,
+                "created-at": 1234567890,
+                "creator-id": 1,
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
                 "permissions": [
@@ -113,18 +113,21 @@ HOST: http://frost.apiblueprint.org/
 
 ## 指定したアプリケーション [/application/{id}]
 
++ Parameters
+    + id: `3` (int, required) - アプリケーションID。
+
 ### アプリケーション情報を取得 [GET]
 
 #### アクセスに必要な権限
 - `application`
 
-+ Parameters
-    + id: `3` (int, required) - アプリケーションID。
-
 + Response 200
     [アプリケーション][]
 
 ## アプリケーションキー [/application/{id}/application-key]
+
++ Parameters
+    + id: `3` (int, required) - アプリケーションID。
 
 + Model (application/json)
 
@@ -137,9 +140,6 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `application-special`
 
-+ Parameters
-    + id: `3` (int, required) - アプリケーションID。
-
 + Response 200
     [アプリケーションキー][]
 
@@ -148,14 +148,109 @@ HOST: http://frost.apiblueprint.org/
 #### アクセスに必要な権限
 - `application-special`
 
-+ Parameters
-    + id: `3` (int, required) - アプリケーションID。
-
 + Response 200
     [アプリケーションキー][]
 
 # Group User
 
+## ユーザー [/user/{id}]
+
++ Parameters
+    + id: `3` (int, required) - ユーザーID。
+
++ Model (application/json)
+
+        {
+            "id": 3,
+            "created-at": 1234567890,
+            "screen-name": "hoge",
+            "name": "ほげほげ",
+            "description": "ぴよぴよ"
+        }
+
+### ユーザー情報の取得 [GET]
+
+#### アクセスに必要な権限
+- `user-read`
+
++ Response 200
+    [ユーザー][]
+
+## 指定ユーザーの最新の投稿一覧 [/user/{id}/timeline]
+
++ Model (application/json)
+
+        [
+            {
+                "id": 1,
+                "created-at": 1234567891
+                "user-id": 1,
+                "post-type": "status",
+                "text": "hogehoge"
+            },
+            {
+                "id": 2,
+                "created-at": 1234567892
+                "user-id": 1,
+                "post-type": "article",
+                "title": "hoge",
+                "description": "description text",
+                "body": "hogehoge",
+                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+            },
+            {
+                "id": 3,
+                "created-at": 1234567893
+                "user-id": 2,
+                "post-type": "link-post",
+                "target-post-id": 2
+                "target-post": {
+                    "id": 2,
+                    "created-at": 1234567892
+                    "user-id": 1,
+                    "post-type": "article",
+                    "title": "hoge",
+                    "description": "description text",
+                    "body": "hogehoge",
+                    "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+                }
+            }
+        ]
+
+### 指定ユーザーの最新の投稿一覧を取得 [GET]
+
+#### アクセスに必要な権限
+- `user-read`
+
++ Request
+
+        {
+            "filter": "all",
+            "limit": 3
+        }
+
++ Response 200
+    [指定ユーザーの最新の投稿一覧][]
+
 # Group Account
+
+## アカウント [/account]
+
+### アカウントを作成 [POST]
+
+#### アクセスに必要な権限
+- `account-special`
+
++ Request
+
+        {
+            "screen-name": "hoge",
+            "password": "hogehoge",
+            "name": "ほげほげ",
+            "description": "ぴよぴよ"
+        }
+
++ Response 200
+    [ユーザー][]
 
 # Group Post
