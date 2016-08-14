@@ -10,7 +10,7 @@ HOST: http://frost.apiblueprint.org/
 
 # Group IceAuth
 
-## リクエストキー [/ice-auth/request]
+## ice-auth/request [/ice-auth/request]
 
 ### リクエストキーを生成 [POST]
 
@@ -29,7 +29,7 @@ HOST: http://frost.apiblueprint.org/
             "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## PINコード [/ice-auth/pin-code]
+## ice-auth/pin-code [/ice-auth/pin-code]
 
 ### PINコードを取得 [GET]
 
@@ -48,7 +48,7 @@ HOST: http://frost.apiblueprint.org/
             "pin-code" : 123456
         }
 
-## PINコードの検証 [/ice-auth/authorize]
+## ice-auth/authorize [/ice-auth/authorize]
 
 ### PINコードの検証とアクセスキーの取得 [POST]
 
@@ -70,7 +70,7 @@ HOST: http://frost.apiblueprint.org/
 
 # Group Application
 
-## アプリケーション [/application]
+## application [/application]
 
 + Model (application/json)
 
@@ -109,9 +109,9 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [アプリケーション][]
+    [application][]
 
-## 指定したアプリケーション [/application/{id}]
+## application/id [/application/{id}]
 
 + Parameters
     + id: `3` (int, required) - アプリケーションID。
@@ -122,9 +122,9 @@ HOST: http://frost.apiblueprint.org/
 - `application`
 
 + Response 200
-    [アプリケーション][]
+    [application][]
 
-## アプリケーションキー [/application/{id}/application-key]
+## application/id/application-key [/application/{id}/application-key]
 
 + Parameters
     + id: `3` (int, required) - アプリケーションID。
@@ -141,7 +141,7 @@ HOST: http://frost.apiblueprint.org/
 - `application-special`
 
 + Response 200
-    [アプリケーションキー][]
+    [application/id/application-key][]
 
 ### アプリケーションキーの取得 [GET]
 
@@ -149,11 +149,11 @@ HOST: http://frost.apiblueprint.org/
 - `application-special`
 
 + Response 200
-    [アプリケーションキー][]
+    [application/id/application-key][]
 
 # Group User
 
-## ユーザー [/user/{id}]
+## user/id [/user/{id}]
 
 + Parameters
     + id: `3` (int, required) - ユーザーID。
@@ -174,9 +174,9 @@ HOST: http://frost.apiblueprint.org/
 - `user-read`
 
 + Response 200
-    [ユーザー][]
+    [user/id][]
 
-## 指定ユーザーの最新の投稿一覧 [/user/{id}/timeline]
+## user/id/timeline [/user/{id}/timeline]
 
 + Model (application/json)
 
@@ -230,11 +230,11 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [指定ユーザーの最新の投稿一覧][]
+    [user/id/timeline][]
 
 # Group Account
 
-## アカウント [/account]
+## account [/account]
 
 ### アカウントを作成 [POST]
 
@@ -251,11 +251,11 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [ユーザー][]
+    [user/id][]
 
 # Group Post
 
-## ポスト [/post/{id}]
+## post/id [/post/{id}]
 
 + Parameters
     + id: `1` (int) - ポストID。
@@ -266,15 +266,15 @@ HOST: http://frost.apiblueprint.org/
 - `post-read`
 
 + Response 200
-    [ステータスポスト][]
+    [post/status][]
 
 + Response 200
-    [アーティクルポスト][]
+    [post/article][]
 
 + Response 200
-    [リンクポスト][]
+    [post/link-post][]
 
-## ステータスポスト [/post/status]
+## post/status [/post/status]
 
 + Model (application/json)
 
@@ -298,9 +298,9 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [ステータスポスト][]
+    [post/status][]
 
-## アーティクルポスト [/post/article]
+## post/article [/post/article]
 
 + Model (application/json)
 
@@ -330,9 +330,9 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [アーティクルポスト][]
+    [post/article][]
 
-## リンクポスト [/post/link-post]
+## post/link-post [/post/link-post]
 
 + Model (application/json)
 
@@ -366,4 +366,4 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [リンクポスト][]
+    [post/link-post][]
