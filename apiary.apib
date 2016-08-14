@@ -48,6 +48,26 @@ HOST: http://frost.apiblueprint.org/
             "pin-code" : "123456"
         }
 
+## PINコードの検証 [/ice-auth/authorize]
+
+### PINコードの検証とアクセスキーの取得 [POST]
+
+#### アクセスに必要な権限
+- 不要
+
++ Request (application/json)
+
+        {
+            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "pin-code" : "123456"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "access-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+        }
+
 # Group Application
 
 ## アプリケーション [/application]
