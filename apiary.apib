@@ -12,7 +12,7 @@ HOST: http://frost.apiblueprint.org/
 
 # Group Application
 
-## Application [/application]
+## アプリケーション [/application]
 
 + Model (application/json)
 
@@ -35,27 +35,42 @@ HOST: http://frost.apiblueprint.org/
             }
         }
 
-### アプリケーション情報の作成 [POST]
-
-アクセスに必要な権限
+### アプリケーションの作成 [POST]
+#### アクセスに必要な権限
 - `application-special`
 
 + Response 200
 
-    [Application][]
+    [アプリケーション][]
 
-## 指定したアプリケーションに対する操作 [/application/{id}]
+## 指定したアプリケーション [/application/{id}]
 
-### アプリケーション情報 [GET]
+### アプリケーション情報を取得 [GET]
 #### アクセスに必要な権限
 - `application`
 
 + Parameters
     + id: `3` (int, required) - application id.
 
-+ Response 200 (application/json)
++ Response 200
 
+    [アプリケーション][]
 
+## アプリケーションキー [/application/{id}/application-key]
+
++ Model (application/json)
+
+        {
+            "application-key": "hogehoge"
+        }
+
+### アプリケーションキーの生成 [POST]
+#### アクセスに必要な権限
+- `application-special`
+
++ Response 200
+
+    [アプリケーションキー][]
 
 # Group User
 
