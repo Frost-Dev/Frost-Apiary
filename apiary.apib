@@ -254,3 +254,85 @@ HOST: http://frost.apiblueprint.org/
     [ユーザー][]
 
 # Group Post
+
+## ポスト [/post]
+
+## ステータスポスト [/post/status]
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "created-at": 1234567891
+            "user-id": 1,
+            "post-type": "status",
+            "text": "hogehoge"
+        }
+
+### ステータスポストを作成 [POST]
+
+#### アクセスに必要な権限
+- `post-write`
+
++ Response 200
+    [ステータスポスト][]
+
+## リンクポスト [/post/link-post]
+
++ Model (application/json)
+
+        {
+            "id": 3,
+            "created-at": 1234567893
+            "user-id": 2,
+            "post-type": "link-post",
+            "target-post-id": 2
+            "target-post": {
+                "id": 2,
+                "created-at": 1234567892
+                "user-id": 1,
+                "post-type": "article",
+                "title": "hoge",
+                "description": "description text",
+                "body": "hogehoge",
+                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+            }
+        }
+
+### リンクポストを作成 [POST]
+
+#### アクセスに必要な権限
+- `post-write`
+
++ Response 200
+    [リンクポスト][]
+
+## アーティクルポスト [/post/article]
+
++ Model (application/json)
+
+        {
+            "id": 3,
+            "created-at": 1234567893
+            "user-id": 2,
+            "post-type": "link-post",
+            "target-post-id": 2
+            "target-post": {
+                "id": 2,
+                "created-at": 1234567892
+                "user-id": 1,
+                "post-type": "article",
+                "title": "hoge",
+                "description": "description text",
+                "body": "hogehoge",
+                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+            }
+        }
+
+### アーティクルポストを作成 [POST]
+
+#### アクセスに必要な権限
+- `post-write`
+
++ Response 200
+    [アーティクルポスト][]
