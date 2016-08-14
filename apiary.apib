@@ -10,20 +10,42 @@ HOST: http://frost.apiblueprint.org/
 
 # Group IceAuth
 
-## リクエストキー [/ice-auth/request{?application%2dkey}]
+## リクエストキー [/ice-auth/request]
 
 ### リクエストキー生成 [POST]
 
 #### アクセスに必要な権限
 - 不要
 
-+ Parameters
-    + application%2dkey: `1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1` (string) - アプリケーションキー
++ Request (application/json)
+
+        {
+            "application-key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+        }
 
 + Response 200 (application/json)
 
         {
             "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+        }
+
+## PINコード [/ice-auth/pin-code]
+
+### PINコード取得 [GET]
+
+#### アクセスに必要な権限
+- `ice-auth-host`
+
++ Request (application/json)
+
+        {
+            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "pin-code" : "123456"
         }
 
 # Group Application
@@ -48,17 +70,23 @@ HOST: http://frost.apiblueprint.org/
             }
         }
 
-## アプリケーション [/application{?name,description,permissions}]
-
 ### アプリケーションの作成 [POST]
 
 #### アクセスに必要な権限
 - `application-special`
 
-+ Parameters
-    + name: `Test` (int, required) - アプリケーション名。
-    + description: `"テスト用のアプリケーションです。"` (string, required) - アプリケーションの概要。
-    + permissions: `"account-read,user-read,post-read,post-write"` (string, required) - 要求する権限。
++ Request (application/json)
+
+        {
+            "name": "Test",
+            "description": "テスト用のアプリケーションです。",
+            "permissions": [
+                "account-read",
+                "user-read",
+                "post-read",
+                "post-write"
+            ]
+        }
 
 + Response 200
     [アプリケーション][]
