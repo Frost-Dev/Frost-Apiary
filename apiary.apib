@@ -55,7 +55,7 @@ HOST: http://frost.apiblueprint.org/
 - `application`
 
 + Parameters
-    + id: `3` (int, required) - application id.
+    + id: `3` (int, required) - アプリケーションID。
 
 + Response 200
     [アプリケーション][]
@@ -64,12 +64,28 @@ HOST: http://frost.apiblueprint.org/
 
 + Model (application/json)
 
-        { "application-key": "hogehoge" }
+        {
+            "application-key": "hogehoge"
+        }
 
 ### アプリケーションキーの生成 [POST]
 
 #### アクセスに必要な権限
 - `application-special`
+
++ Parameters
+    + id: `3` (int, required) - アプリケーションID。
+
++ Response 200
+    [アプリケーションキー][]
+
+### アプリケーションキーの取得 [GET]
+
+#### アクセスに必要な権限
+- `application-special`
+
++ Parameters
+    + id: `3` (int, required) - アプリケーションID。
 
 + Response 200
     [アプリケーションキー][]
