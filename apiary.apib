@@ -10,7 +10,7 @@ HOST: http://frost.apiblueprint.org/
 
 # Group IceAuth
 
-## ice-auth/request [/ice-auth/request]
+## iceAuth/request [/iceAuth/request]
 
 ### リクエストキーを生成 [POST]
 
@@ -20,37 +20,38 @@ HOST: http://frost.apiblueprint.org/
 + Request (application/json)
 
         {
-            "application-key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## ice-auth/pin-code [/ice-auth/pin-code]
+## iceAuth/verificationKey [/iceAuth/verificationKey]
 
-### PINコードを取得 [GET]
+### 検証キーを取得 [GET]
 
 #### アクセスに必要な権限
-- `ice-auth-host`
+- `iceAuthHost`
 
 + Request (application/json)
 
         {
-            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "applicationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "pin-code" : 123456
+            "verificationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## ice-auth/authorize [/ice-auth/authorize]
+## iceAuth/authorize [/iceAuth/authorize]
 
-### PINコードの検証とアクセスキーの取得 [POST]
+### 各種キーによる認証とアクセスキーの取得 [POST]
 
 #### アクセスに必要な権限
 - 不要
@@ -58,34 +59,35 @@ HOST: http://frost.apiblueprint.org/
 + Request (application/json)
 
         {
-            "request-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
-            "pin-code" : 123456
+            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "verificationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "access-key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "accessKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-# Group Application
+# Group Applications
 
-## application [/application]
+## applications [/applications]
 
 + Model (application/json)
 
         {
             "application": {
                 "id": 3,
-                "created-at": 1234567890,
-                "creator-id": 1,
+                "createdAt": 1234567890,
+                "creatorId": 1,
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
                 "permissions": [
-                    "account-read",
-                    "user-read",
-                    "post-read",
-                    "post-write"
+                    "accountRead",
+                    "userRead",
+                    "postRead",
+                    "postWrite"
                 ]
             }
         }
@@ -93,7 +95,7 @@ HOST: http://frost.apiblueprint.org/
 ### アプリケーションの作成 [POST]
 
 #### アクセスに必要な権限
-- `application-special`
+- `applicationSpecial`
 
 + Request (application/json)
 
@@ -101,17 +103,17 @@ HOST: http://frost.apiblueprint.org/
             "name": "Test",
             "description": "テスト用のアプリケーションです。",
             "permissions": [
-                "account-read",
-                "user-read",
-                "post-read",
-                "post-write"
+                "accountRead",
+                "userRead",
+                "postRead",
+                "postWrite"
             ]
         }
 
 + Response 200
     [application][]
 
-## application/id [/application/{id}]
+## applications/id [/applications/{id}]
 
 + Parameters
     + id: `3` (int, required) - アプリケーションID。
@@ -124,7 +126,7 @@ HOST: http://frost.apiblueprint.org/
 + Response 200
     [application][]
 
-## application/id/application-key [/application/{id}/application-key]
+## applications/id/applicationKey [/applications/{id}/applicationKey]
 
 + Parameters
     + id: `3` (int, required) - アプリケーションID。
@@ -132,28 +134,28 @@ HOST: http://frost.apiblueprint.org/
 + Model (application/json)
 
         {
-            "application-key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 ### アプリケーションキーの生成 [POST]
 
 #### アクセスに必要な権限
-- `application-special`
+- `applicationSpecial`
 
 + Response 200
-    [application/id/application-key][]
+    [applications/id/applicationKey][]
 
 ### アプリケーションキーの取得 [GET]
 
 #### アクセスに必要な権限
-- `application-special`
+- `applicationSpecial`
 
 + Response 200
-    [application/id/application-key][]
+    [applications/id/applicationKey][]
 
-# Group User
+# Group Users
 
-## user/id [/user/{id}]
+## users/id [/users/{id}]
 
 + Parameters
     + id: `3` (int, required) - ユーザーID。
@@ -162,8 +164,8 @@ HOST: http://frost.apiblueprint.org/
 
         {
             "id": 3,
-            "created-at": 1234567890,
-            "screen-name": "hoge",
+            "createdAt": 1234567890,
+            "screenName": "hoge",
             "name": "ほげほげ",
             "description": "ぴよぴよ"
         }
@@ -171,48 +173,48 @@ HOST: http://frost.apiblueprint.org/
 ### ユーザー情報の取得 [GET]
 
 #### アクセスに必要な権限
-- `user-read`
+- `userRead`
 
 + Response 200
-    [user/id][]
+    [users/id][]
 
-## user/id/timeline [/user/{id}/timeline]
+## users/id/timeline [/users/{id}/timeline]
 
 + Model (application/json)
 
         [
             {
                 "id": 1,
-                "created-at": 1234567891,
-                "user-id": 1,
-                "post-type": "status",
+                "createdAt": 1234567891,
+                "userId": 1,
+                "postType": "status",
                 "text": "hogehoge"
             },
             {
                 "id": 2,
-                "created-at": 1234567892,
-                "user-id": 1,
-                "post-type": "article",
+                "createdAt": 1234567892,
+                "userId": 1,
+                "postType": "article",
                 "title": "hoge",
                 "description": "description text",
                 "body": "hogehoge",
-                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
             },
             {
                 "id": 3,
-                "created-at": 1234567893,
-                "user-id": 2,
-                "post-type": "link-post",
-                "target-post-id": 2
-                "target-post": {
+                "createdAt": 1234567893,
+                "userId": 2,
+                "postType": "linkPost",
+                "targetPostId": 2
+                "targetPost": {
                     "id": 2,
-                    "created-at": 1234567892,
-                    "user-id": 1,
-                    "post-type": "article",
+                    "createdAt": 1234567892,
+                    "userId": 1,
+                    "postType": "article",
                     "title": "hoge",
                     "description": "description text",
                     "body": "hogehoge",
-                    "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+                    "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
                 }
             }
         ]
@@ -220,7 +222,7 @@ HOST: http://frost.apiblueprint.org/
 ### 指定ユーザーの最新の投稿一覧を取得 [GET]
 
 #### アクセスに必要な権限
-- `user-read`
+- `userRead`
 
 + Request (application/json)
 
@@ -230,32 +232,32 @@ HOST: http://frost.apiblueprint.org/
         }
 
 + Response 200
-    [user/id/timeline][]
+    [users/id/timeline][]
 
-# Group Account
+# Group Accounts
 
-## account [/account]
+## account [/accounts]
 
 ### アカウントを作成 [POST]
 
 #### アクセスに必要な権限
-- `account-special`
+- `accountSpecial`
 
 + Request (application/json)
 
         {
-            "screen-name": "hoge",
+            "screenName": "hoge",
             "password": "hogehoge",
             "name": "ほげほげ",
             "description": "ぴよぴよ"
         }
 
 + Response 200
-    [user/id][]
+    [users/id][]
 
-# Group Post
+# Group Posts
 
-## post/id [/post/{id}]
+## posts/id [/posts/{id}]
 
 + Parameters
     + id: `1` (int) - ポストID。
@@ -263,33 +265,33 @@ HOST: http://frost.apiblueprint.org/
 ### ポストを取得 [GET]
 
 #### アクセスに必要な権限
-- `post-read`
+- `postRead`
 
 + Response 200
-    [post/status][]
+    [posts/status][]
 
 + Response 200
-    [post/article][]
+    [posts/article][]
 
 + Response 200
-    [post/link-post][]
+    [posts/linkPost][]
 
-## post/status [/post/status]
+## post/status [/posts/status]
 
 + Model (application/json)
 
         {
             "id": 1,
-            "created-at": 1234567891,
-            "user-id": 1,
-            "post-type": "status",
+            "createdAt": 1234567891,
+            "userId": 1,
+            "postType": "status",
             "text": "hogehoge"
         }
 
 ### ステータスポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `post-write`
+- `postWrite`
 
 + Request (application/json)
 
@@ -300,25 +302,25 @@ HOST: http://frost.apiblueprint.org/
 + Response 200
     [post/status][]
 
-## post/article [/post/article]
+## posts/article [/post/article]
 
 + Model (application/json)
 
         {
             "id": 2,
-            "created-at": 1234567892,
-            "user-id": 1,
-            "post-type": "article",
+            "createdAt": 1234567892,
+            "userId": 1,
+            "postType": "article",
             "title": "hoge",
             "description": "description text",
             "body": "hogehoge",
-            "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+            "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
         }
 
 ### アーティクルポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `post-write`
+- `postWrite`
 
 + Request (application/json)
 
@@ -326,44 +328,44 @@ HOST: http://frost.apiblueprint.org/
             "title": "hoge",
             "description": "description text",
             "body": "hogehoge",
-            "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+            "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
         }
 
 + Response 200
-    [post/article][]
+    [posts/article][]
 
-## post/link-post [/post/link-post]
+## posts/linkPost [/posts/linkPost]
 
 + Model (application/json)
 
         {
             "id": 3,
-            "created-at": 1234567893,
-            "user-id": 2,
-            "post-type": "link-post",
-            "target-post-id": 2,
-            "target-post": {
+            "createdAt": 1234567893,
+            "userId": 2,
+            "postType": "linkPost",
+            "targetPostId": 2,
+            "targetPost": {
                 "id": 2,
-                "created-at": 1234567892,
-                "user-id": 1,
-                "post-type": "article",
+                "createdAt": 1234567892,
+                "userId": 1,
+                "postType": "article",
                 "title": "hoge",
                 "description": "description text",
                 "body": "hogehoge",
-                "thumbnail-url": "http://hogehoge.jp/thumbnail.png"
+                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
             }
         }
 
 ### リンクポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `post-write`
+- `postWrite`
 
 + Request (application/json)
 
         {
-            "target-post-id": 2
+            "targetPostId": 2
         }
 
 + Response 200
-    [post/link-post][]
+    [posts/linkPost][]
