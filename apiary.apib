@@ -9,7 +9,7 @@ HOST: https://api.frost-sns.ml/
 
 # Group IceAuth
 
-## iceAuth/request [/iceAuth/request]
+## ice_auth/request [/ice_auth/request]
 
 ### リクエストキーの作成 [POST]
 #### 説明
@@ -20,39 +20,39 @@ HOST: https://api.frost-sns.ml/
 + Request (application/json)
 
         {
-            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "application_key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "request_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## iceAuth/verificationKey [/iceAuth/verificationKey]
+## ice_auth/verification_key [/ice_auth/verification_key]
 
 ### 検証キーを取得 [GET]
 #### 説明
 認証ホスト(Frost-Webなど)向けです。
 
-クライアントは`iceAuthHost`権限を持つ認証ホスト上で手続きを行い、間接的に`verificationKey`を得る必要があります。
+クライアントは`ice_auth_host`権限を持つ認証ホスト上で手続きを行い、間接的に`verification_key`を得る必要があります。
 #### アクセスに必要な権限
-- `iceAuthHost`
+- `ice_auth_host`
 
 + Request (application/json)
 
         {
-            "applicationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
-            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "application_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "request_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "verificationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "verification_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## iceAuth/authorize [/iceAuth/authorize]
+## ice_auth/authorize [/ice_auth/authorize]
 
 ### 認証してアクセスキーを作成・取得 [POST]
 #### アクセスに必要な権限
@@ -61,15 +61,15 @@ HOST: https://api.frost-sns.ml/
 + Request (application/json)
 
         {
-            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
-            "requestKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
-            "verificationKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "application_key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "request_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
+            "verification_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 + Response 200 (application/json)
 
         {
-            "accessKey" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "access_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 # Group Applications
@@ -81,15 +81,15 @@ HOST: https://api.frost-sns.ml/
         {
             "application": {
                 "id": 3,
-                "createdAt": 1234567890,
-                "creatorId": 1,
+                "created_at": 1234567890,
+                "creator_id": 1,
                 "name": "Test",
                 "description": "テスト用のアプリケーションです。",
                 "permissions": [
-                    "accountRead",
-                    "userRead",
-                    "postRead",
-                    "postWrite"
+                    "account_read",
+                    "user_read",
+                    "post_read",
+                    "post_write"
                 ]
             }
         }
@@ -97,7 +97,7 @@ HOST: https://api.frost-sns.ml/
 ### アプリケーションの作成 [POST]
 
 #### アクセスに必要な権限
-- `applicationSpecial`
+- `application_special`
 
 + Request (application/json)
 
@@ -105,10 +105,10 @@ HOST: https://api.frost-sns.ml/
             "name": "Test",
             "description": "テスト用のアプリケーションです。",
             "permissions": [
-                "accountRead",
-                "userRead",
-                "postRead",
-                "postWrite"
+                "account_read",
+                "user_read",
+                "post_read",
+                "post_write"
             ]
         }
 
@@ -128,7 +128,7 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [applications][]
 
-## applications/id/applicationKey [/applications/{id}/applicationKey]
+## applications/id/application_key [/applications/{id}/application_key]
 
 + Parameters
     + id: `3` (int, required) - アプリケーションID。
@@ -136,24 +136,24 @@ HOST: https://api.frost-sns.ml/
 + Model (application/json)
 
         {
-            "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "application_key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
 ### アプリケーションキーの作成 [POST]
 
 #### アクセスに必要な権限
-- `applicationSpecial`
+- `application_special`
 
 + Response 200
-    [applications/id/applicationKey][]
+    [applications/id/application_key][]
 
 ### アプリケーションキーの取得 [GET]
 
 #### アクセスに必要な権限
-- `applicationSpecial`
+- `application_special`
 
 + Response 200
-    [applications/id/applicationKey][]
+    [applications/id/application_key][]
 
 # Group Users
 
@@ -166,8 +166,8 @@ HOST: https://api.frost-sns.ml/
 
         {
             "id": 3,
-            "createdAt": 1234567890,
-            "screenName": "hoge",
+            "created_at": 1234567890,
+            "screen_name": "hoge",
             "name": "ほげほげ",
             "description": "ぴよぴよ"
         }
@@ -175,7 +175,7 @@ HOST: https://api.frost-sns.ml/
 ### ユーザー情報の取得 [GET]
 
 #### アクセスに必要な権限
-- `userRead`
+- `user_read`
 
 + Response 200
     [users/id][]
@@ -187,16 +187,16 @@ HOST: https://api.frost-sns.ml/
         [
             {
                 "id": 1,
-                "createdAt": 1234567891,
-                "userId": 1,
-                "postType": "status",
+                "created_at": 1234567891,
+                "user_id": 1,
+                "post_type": "status",
                 "text": "hogehoge"
             },
             {
                 "id": 2,
-                "createdAt": 1234567892,
-                "userId": 1,
-                "postType": "article",
+                "created_at": 1234567892,
+                "user_id": 1,
+                "post_type": "article",
                 "title": "hoge",
                 "description": "description text",
                 "body": "hogehoge",
@@ -204,19 +204,19 @@ HOST: https://api.frost-sns.ml/
             },
             {
                 "id": 3,
-                "createdAt": 1234567893,
-                "userId": 2,
-                "postType": "linkPost",
-                "targetPostId": 2
-                "targetPost": {
+                "created_at": 1234567893,
+                "user_id": 2,
+                "post_type": "linkPost",
+                "target_post_id": 2
+                "target_post": {
                     "id": 2,
-                    "createdAt": 1234567892,
-                    "userId": 1,
-                    "postType": "article",
+                    "created_at": 1234567892,
+                    "user_id": 1,
+                    "post_type": "article",
                     "title": "hoge",
                     "description": "description text",
                     "body": "hogehoge",
-                    "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+                    "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
                 }
             }
         ]
@@ -224,7 +224,7 @@ HOST: https://api.frost-sns.ml/
 ### 指定ユーザーの最新の投稿一覧を取得 [GET]
 
 #### アクセスに必要な権限
-- `userRead`
+- `user_read`
 
 + Request (application/json)
 
@@ -243,12 +243,12 @@ HOST: https://api.frost-sns.ml/
 ### アカウントを作成 [POST]
 
 #### アクセスに必要な権限
-- `accountSpecial`
+- `account_special`
 
 + Request (application/json)
 
         {
-            "screenName": "hoge",
+            "screen_name": "hoge",
             "password": "hogehoge",
             "name": "ほげほげ",
             "description": "ぴよぴよ"
@@ -267,7 +267,7 @@ HOST: https://api.frost-sns.ml/
 ### ポストを取得 [GET]
 
 #### アクセスに必要な権限
-- `postRead`
+- `post_read`
 
 + Response 200
     [posts/status][]
@@ -276,7 +276,7 @@ HOST: https://api.frost-sns.ml/
     [posts/article][]
 
 + Response 200
-    [posts/linkPost][]
+    [posts/link_post][]
 
 ## posts/status [/posts/status]
 
@@ -284,16 +284,16 @@ HOST: https://api.frost-sns.ml/
 
         {
             "id": 1,
-            "createdAt": 1234567891,
-            "userId": 1,
-            "postType": "status",
+            "created_at": 1234567891,
+            "user_id": 1,
+            "post_type": "status",
             "text": "hogehoge"
         }
 
 ### ステータスポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `postWrite`
+- `post_write`
 
 + Request (application/json)
 
@@ -310,19 +310,19 @@ HOST: https://api.frost-sns.ml/
 
         {
             "id": 2,
-            "createdAt": 1234567892,
-            "userId": 1,
-            "postType": "article",
+            "created_at": 1234567892,
+            "user_id": 1,
+            "post_type": "article",
             "title": "hoge",
             "description": "description text",
             "body": "hogehoge",
-            "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+            "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
         }
 
 ### アーティクルポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `postWrite`
+- `post_write`
 
 + Request (application/json)
 
@@ -330,44 +330,44 @@ HOST: https://api.frost-sns.ml/
             "title": "hoge",
             "description": "description text",
             "body": "hogehoge",
-            "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+            "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
         }
 
 + Response 200
     [posts/article][]
 
-## posts/linkPost [/posts/linkPost]
+## posts/link_post [/posts/link_post]
 
 + Model (application/json)
 
         {
             "id": 3,
-            "createdAt": 1234567893,
-            "userId": 2,
-            "postType": "linkPost",
-            "targetPostId": 2,
-            "targetPost": {
+            "created_at": 1234567893,
+            "user_id": 2,
+            "post_type": "linkPost",
+            "target_post_id": 2,
+            "target_post": {
                 "id": 2,
-                "createdAt": 1234567892,
-                "userId": 1,
-                "postType": "article",
+                "created_at": 1234567892,
+                "user_id": 1,
+                "post_type": "article",
                 "title": "hoge",
                 "description": "description text",
                 "body": "hogehoge",
-                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+                "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
             }
         }
 
 ### リンクポストを作成 [POST]
 
 #### アクセスに必要な権限
-- `postWrite`
+- `post_write`
 
 + Request (application/json)
 
         {
-            "targetPostId": 2
+            "target_post_id": 2
         }
 
 + Response 200
-    [posts/linkPost][]
+    [posts/link_post][]
