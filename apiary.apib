@@ -12,7 +12,7 @@ HOST: http://frost.apiblueprint.org/
 
 ## iceAuth/request [/iceAuth/request]
 
-### リクエストキーを生成 [POST]
+### リクエストキーの作成 [POST]
 
 #### アクセスに必要な権限
 - 不要
@@ -31,7 +31,7 @@ HOST: http://frost.apiblueprint.org/
 
 ## iceAuth/verificationKey [/iceAuth/verificationKey]
 
-### 検証キーを取得 [GET]
+### 検証キーを取得(認証ホスト向け) [GET]
 
 #### アクセスに必要な権限
 - `iceAuthHost`
@@ -51,7 +51,7 @@ HOST: http://frost.apiblueprint.org/
 
 ## iceAuth/authorize [/iceAuth/authorize]
 
-### 認証によるアクセスキーの取得 [POST]
+### 認証してアクセスキーを作成・取得 [POST]
 
 #### アクセスに必要な権限
 - 不要
@@ -137,7 +137,7 @@ HOST: http://frost.apiblueprint.org/
             "applicationKey": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-### アプリケーションキーの生成 [POST]
+### アプリケーションキーの作成 [POST]
 
 #### アクセスに必要な権限
 - `applicationSpecial`
