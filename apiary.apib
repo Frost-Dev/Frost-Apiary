@@ -7,13 +7,13 @@ HOST: http://frost.apiblueprint.org/
 
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
-
 # Group IceAuth
 
 ## iceAuth/request [/iceAuth/request]
 
 ### リクエストキーの作成 [POST]
-
+#### 説明
+認証を行う際に必要となります。
 #### アクセスに必要な権限
 - 不要
 
@@ -31,8 +31,11 @@ HOST: http://frost.apiblueprint.org/
 
 ## iceAuth/verificationKey [/iceAuth/verificationKey]
 
-### 検証キーを取得(認証ホスト向け) [GET]
+### 検証キーを取得 [GET]
+#### 説明
+認証ホスト(Frost-Webなど)向けです。
 
+クライアントは`iceAuthHost`権限を持つ認証ホストからverificationKeyを得る必要があります。
 #### アクセスに必要な権限
 - `iceAuthHost`
 
@@ -52,7 +55,6 @@ HOST: http://frost.apiblueprint.org/
 ## iceAuth/authorize [/iceAuth/authorize]
 
 ### 認証してアクセスキーを作成・取得 [POST]
-
 #### アクセスに必要な権限
 - 不要
 
