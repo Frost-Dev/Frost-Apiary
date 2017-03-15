@@ -29,9 +29,9 @@ HOST: https://api.frost-sns.ml/
             "request_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
         }
 
-## ice_auth/verification_key [/ice_auth/verification_key]
+## ice_auth/verification_code [/ice_auth/verification_code]
 
-### 検証キーを取得 [GET]
+### 検証コードを取得 [GET]
 #### 説明
 認証ホスト(Frost-Webなど)向けです。
 
@@ -49,7 +49,7 @@ HOST: https://api.frost-sns.ml/
 + Response 200 (application/json)
 
         {
-            "verification_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "verification_code" : "1234567890"
         }
 
 ## ice_auth/authorize [/ice_auth/authorize]
@@ -63,7 +63,7 @@ HOST: https://api.frost-sns.ml/
         {
             "application_key": "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
             "request_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1",
-            "verification_key" : "1-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.1"
+            "verification_code" : "1234567890"
         }
 
 + Response 200 (application/json)
