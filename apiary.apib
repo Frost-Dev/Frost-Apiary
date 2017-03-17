@@ -7,6 +7,110 @@ HOST: https://api.frost-sns.ml/
 
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
+# Group Account
+
+## account [/account]
+
+### アカウントを作成 [POST]
+
+#### アクセスに必要な権限
+- `account_special`
+
++ Request (application/json)
+
+        {
+            "screen_name": "hoge",
+            "password": "hogehoge",
+            "name": "ほげほげ",
+            "description": "ぴよぴよ"
+        }
+
++ Response 200
+    [users/id][]
+
+# Group Applications
+
+## applications [/applications]
+
++ Model (application/json)
+
+        {
+            "application": {
+                "id": "abcdef123456abcdef123456",
+                "created_at": 1234567890,
+                "creator_id": 1,
+                "name": "Test",
+                "description": "テスト用のアプリケーションです。",
+                "permissions": [
+                    "account_read",
+                    "user_read",
+                    "post_read",
+                    "post_write"
+                ]
+            }
+        }
+
+### アプリケーションの作成 [POST]
+
+#### アクセスに必要な権限
+- `application_special`
+
++ Request (application/json)
+
+        {
+            "name": "Test",
+            "description": "テスト用のアプリケーションです。",
+            "permissions": [
+                "account_read",
+                "user_read",
+                "post_read",
+                "post_write"
+            ]
+        }
+
++ Response 200
+    [applications][]
+
+## applications/id [/applications/{id}]
+
++ Parameters
+    + id: `abcdef123456abcdef123456` (string, required) - アプリケーションID。
+
+### アプリケーション情報を取得 [GET]
+
+#### アクセスに必要な権限
+- `application`
+
++ Response 200
+    [applications][]
+
+## applications/id/application_key [/applications/{id}/application_key]
+
++ Parameters
+    + id: `abcdef123456abcdef123456` (string, required) - アプリケーションID。
+
++ Model (application/json)
+
+        {
+            "application_key": "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
+        }
+
+### アプリケーションキーの作成 [POST]
+
+#### アクセスに必要な権限
+- `application_special`
+
++ Response 200
+    [applications/id/application_key][]
+
+### アプリケーションキーの取得 [GET]
+
+#### アクセスに必要な権限
+- `application_special`
+
++ Response 200
+    [applications/id/application_key][]
+
 # Group IceAuth
 
 ## ice_auth [/ice_auth]
@@ -92,191 +196,6 @@ HOST: https://api.frost-sns.ml/
         {
             "access_key" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
         }
-
-# Group Applications
-
-## applications [/applications]
-
-+ Model (application/json)
-
-        {
-            "application": {
-                "id": "abcdef123456abcdef123456",
-                "created_at": 1234567890,
-                "creator_id": 1,
-                "name": "Test",
-                "description": "テスト用のアプリケーションです。",
-                "permissions": [
-                    "account_read",
-                    "user_read",
-                    "post_read",
-                    "post_write"
-                ]
-            }
-        }
-
-### アプリケーションの作成 [POST]
-
-#### アクセスに必要な権限
-- `application_special`
-
-+ Request (application/json)
-
-        {
-            "name": "Test",
-            "description": "テスト用のアプリケーションです。",
-            "permissions": [
-                "account_read",
-                "user_read",
-                "post_read",
-                "post_write"
-            ]
-        }
-
-+ Response 200
-    [applications][]
-
-## applications/id [/applications/{id}]
-
-+ Parameters
-    + id: `abcdef123456abcdef123456` (string, required) - アプリケーションID。
-
-### アプリケーション情報を取得 [GET]
-
-#### アクセスに必要な権限
-- `application`
-
-+ Response 200
-    [applications][]
-
-## applications/id/application_key [/applications/{id}/application_key]
-
-+ Parameters
-    + id: `abcdef123456abcdef123456` (string, required) - アプリケーションID。
-
-+ Model (application/json)
-
-        {
-            "application_key": "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
-        }
-
-### アプリケーションキーの作成 [POST]
-
-#### アクセスに必要な権限
-- `application_special`
-
-+ Response 200
-    [applications/id/application_key][]
-
-### アプリケーションキーの取得 [GET]
-
-#### アクセスに必要な権限
-- `application_special`
-
-+ Response 200
-    [applications/id/application_key][]
-
-# Group Users
-
-## users/id [/users/{id}]
-
-+ Parameters
-    + id: `abcdef123456abcdef123456` (string, required) - ユーザーID。
-
-+ Model (application/json)
-
-        {
-            "id": "abcdef123456abcdef123456",
-            "created_at": 1234567890,
-            "screen_name": "hoge",
-            "name": "ほげほげ",
-            "description": "ぴよぴよ"
-        }
-
-### ユーザー情報の取得 [GET]
-
-#### アクセスに必要な権限
-- `user_read`
-
-+ Response 200
-    [users/id][]
-
-## users/id/timeline [/users/{id}/timeline]
-
-+ Model (application/json)
-
-        [
-            {
-                "id": "abcdef123456abcdef123456",
-                "created_at": 1234567891,
-                "user_id": 1,
-                "post_type": "status",
-                "text": "hogehoge"
-            },
-            {
-                "id": "abcdef123456abcdef123457",
-                "created_at": 1234567892,
-                "user_id": 1,
-                "post_type": "article",
-                "title": "hoge",
-                "description": "description text",
-                "body": "hogehoge",
-                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
-            },
-            {
-                "id": "abcdef123456abcdef123458",
-                "created_at": 1234567893,
-                "user_id": 2,
-                "post_type": "linkPost",
-                "target_post_id": 2
-                "target_post": {
-                    "id": 2,
-                    "created_at": 1234567892,
-                    "user_id": 1,
-                    "post_type": "article",
-                    "title": "hoge",
-                    "description": "description text",
-                    "body": "hogehoge",
-                    "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
-                }
-            }
-        ]
-
-### 指定ユーザーの最新の投稿一覧を取得 [GET]
-
-#### アクセスに必要な権限
-- `user_read`
-
-+ Request (application/json)
-
-        {
-            "filter": "all",
-            "limit": 3
-        }
-
-+ Response 200
-    [users/id/timeline][]
-
-# Group Account
-
-## account [/account]
-
-### アカウントを作成 [POST]
-
-#### アクセスに必要な権限
-- `account_special`
-
-+ Request (application/json)
-
-        {
-            "screen_name": "hoge",
-            "password": "hogehoge",
-            "name": "ほげほげ",
-            "description": "ぴよぴよ"
-        }
-
-+ Response 200
-    [users/id][]
 
 # Group Posts
 
@@ -392,3 +311,84 @@ HOST: https://api.frost-sns.ml/
 
 + Response 200
     [posts/link_post][]
+
+# Group Users
+
+## users/id [/users/{id}]
+
++ Parameters
+    + id: `abcdef123456abcdef123456` (string, required) - ユーザーID。
+
++ Model (application/json)
+
+        {
+            "id": "abcdef123456abcdef123456",
+            "created_at": 1234567890,
+            "screen_name": "hoge",
+            "name": "ほげほげ",
+            "description": "ぴよぴよ"
+        }
+
+### ユーザー情報の取得 [GET]
+
+#### アクセスに必要な権限
+- `user_read`
+
++ Response 200
+    [users/id][]
+
+## users/id/timeline [/users/{id}/timeline]
+
++ Model (application/json)
+
+        [
+            {
+                "id": "abcdef123456abcdef123456",
+                "created_at": 1234567891,
+                "user_id": 1,
+                "post_type": "status",
+                "text": "hogehoge"
+            },
+            {
+                "id": "abcdef123456abcdef123457",
+                "created_at": 1234567892,
+                "user_id": 1,
+                "post_type": "article",
+                "title": "hoge",
+                "description": "description text",
+                "body": "hogehoge",
+                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+            },
+            {
+                "id": "abcdef123456abcdef123458",
+                "created_at": 1234567893,
+                "user_id": 2,
+                "post_type": "linkPost",
+                "target_post_id": 2
+                "target_post": {
+                    "id": 2,
+                    "created_at": 1234567892,
+                    "user_id": 1,
+                    "post_type": "article",
+                    "title": "hoge",
+                    "description": "description text",
+                    "body": "hogehoge",
+                    "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+                }
+            }
+        ]
+
+### 指定ユーザーの最新の投稿一覧を取得 [GET]
+
+#### アクセスに必要な権限
+- `user_read`
+
++ Request (application/json)
+
+        {
+            "filter": "all",
+            "limit": 3
+        }
+
++ Response 200
+    [users/id/timeline][]
