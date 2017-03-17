@@ -210,24 +210,25 @@ HOST: https://api.frost-sns.ml/
 - `post_read`
 
 + Response 200
-    [posts/status][]
+    [posts/post_status][]
 
 + Response 200
-    [posts/article][]
+    [posts/post_article][]
 
 + Response 200
-    [posts/link_post][]
+    [posts/post_link][]
 
-## posts/status [/posts/status]
+## posts/post_status [/posts/post_status]
 
 + Model (application/json)
 
         {
-            "id": "abcdef123456abcdef123456",
-            "created_at": 1234567891,
-            "user_id": 1,
-            "post_type": "status",
-            "text": "hogehoge"
+            "post_status": {
+                "id": "abcdef123456abcdef123456",
+                "created_at": 1234567891,
+                "user_id": 1,
+                "text": "hogehoge"
+            }
         }
 
 ### ステータスポストを作成 [POST]
@@ -242,21 +243,22 @@ HOST: https://api.frost-sns.ml/
         }
 
 + Response 200
-    [posts/status][]
+    [posts/post_status][]
 
-## posts/article [/posts/article]
+## posts/post_article [/posts/post_article]
 
 + Model (application/json)
 
         {
-            "id": "abcdef123456abcdef123457",
-            "created_at": 1234567892,
-            "user_id": 1,
-            "post_type": "article",
-            "title": "hoge",
-            "description": "description text",
-            "body": "hogehoge",
-            "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+            "post_article": {
+                "id": "abcdef123456abcdef123457",
+                "created_at": 1234567892,
+                "user_id": 1,
+                "title": "hoge",
+                "description": "description text",
+                "body": "hogehoge",
+                "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+            }
         }
 
 ### アーティクルポストを作成 [POST]
@@ -274,27 +276,29 @@ HOST: https://api.frost-sns.ml/
         }
 
 + Response 200
-    [posts/article][]
+    [posts/post_article][]
 
-## posts/link_post [/posts/link_post]
+## posts/post_link [/posts/post_link]
 
 + Model (application/json)
 
         {
-            "id": "abcdef123456abcdef123458",
-            "created_at": 1234567893,
-            "user_id": 2,
-            "post_type": "linkPost",
-            "target_post_id": 2,
-            "target_post": {
-                "id": 2,
-                "created_at": 1234567892,
-                "user_id": 1,
-                "post_type": "article",
-                "title": "hoge",
-                "description": "description text",
-                "body": "hogehoge",
-                "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+            "post_link": {
+                "id": "abcdef123456abcdef123458",
+                "created_at": 1234567893,
+                "user_id": 2,
+                "target_post_id": 2,
+                "target_post": {
+                    "post_article": {
+                        "id": 2,
+                        "created_at": 1234567892,
+                        "user_id": 1,
+                        "title": "hoge",
+                        "description": "description text",
+                        "body": "hogehoge",
+                        "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+                    }
+                }
             }
         }
 
@@ -310,7 +314,7 @@ HOST: https://api.frost-sns.ml/
         }
 
 + Response 200
-    [posts/link_post][]
+    [posts/post_link][]
 
 # Group Users
 
@@ -322,11 +326,13 @@ HOST: https://api.frost-sns.ml/
 + Model (application/json)
 
         {
-            "id": "abcdef123456abcdef123456",
-            "created_at": 1234567890,
-            "screen_name": "hoge",
-            "name": "ほげほげ",
-            "description": "ぴよぴよ"
+            "user": {
+                "id": "abcdef123456abcdef123456",
+                "created_at": 1234567890,
+                "screen_name": "hoge",
+                "name": "ほげほげ",
+                "description": "ぴよぴよ"
+            }
         }
 
 ### ユーザー情報の取得 [GET]
@@ -343,37 +349,41 @@ HOST: https://api.frost-sns.ml/
 
         [
             {
-                "id": "abcdef123456abcdef123456",
-                "created_at": 1234567891,
-                "user_id": 1,
-                "post_type": "status",
-                "text": "hogehoge"
+                "post_status": {
+                    "id": "abcdef123456abcdef123456",
+                    "created_at": 1234567891,
+                    "user_id": 1,
+                    "text": "hogehoge"
+                }
             },
             {
-                "id": "abcdef123456abcdef123457",
-                "created_at": 1234567892,
-                "user_id": 1,
-                "post_type": "article",
-                "title": "hoge",
-                "description": "description text",
-                "body": "hogehoge",
-                "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
-            },
-            {
-                "id": "abcdef123456abcdef123458",
-                "created_at": 1234567893,
-                "user_id": 2,
-                "post_type": "linkPost",
-                "target_post_id": 2
-                "target_post": {
-                    "id": 2,
+                "post_article": {
+                    "id": "abcdef123456abcdef123457",
                     "created_at": 1234567892,
                     "user_id": 1,
-                    "post_type": "article",
                     "title": "hoge",
                     "description": "description text",
                     "body": "hogehoge",
-                    "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+                    "thumbnailUrl": "http://hogehoge.jp/thumbnail.png"
+                }
+            },
+            {
+                "post_link": {
+                    "id": "abcdef123456abcdef123458",
+                    "created_at": 1234567893,
+                    "user_id": 2,
+                    "target_post_id": 2,
+                    "target_post": {
+                        "post_article": {
+                            "id": 2,
+                            "created_at": 1234567892,
+                            "user_id": 1,
+                            "title": "hoge",
+                            "description": "description text",
+                            "body": "hogehoge",
+                            "thumbnail_url": "http://hogehoge.jp/thumbnail.png"
+                        }
+                    }
                 }
             }
         ]
