@@ -145,9 +145,9 @@ HOST: https://api.frost-sns.ml/
 
 + Request (application/json)
 
-        {
-            "ice_auth_key" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
-        }
+    + Headers
+
+            X-Ice-Auth-Key: abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123
 
 + Response 200 (application/json)
 
@@ -167,10 +167,15 @@ HOST: https://api.frost-sns.ml/
 
 + Request (application/json)
 
-        {
-            "ice_auth_key" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123",
-            "user_id": "abcdef123456abcdef123457"
-        }
+    + Headers
+
+            X-Ice-Auth-Key: abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123
+
+    + Body
+
+            {
+                "user_id": "abcdef123456abcdef123457"
+            }
 
 + Response 200 (application/json)
 
@@ -186,10 +191,15 @@ HOST: https://api.frost-sns.ml/
 
 + Request (application/json)
 
-        {
-            "ice_auth_key" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123",
-            "verification_code" : "1234567890"
-        }
+    + Headers
+
+            X-Ice-Auth-Key: abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123
+
+    + Body
+
+            {
+                "verification_code" : "1234567890"
+            }
 
 + Response 200 (application/json)
 
