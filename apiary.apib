@@ -111,6 +111,31 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [applications/id/application_key][]
 
+## applications/id/access_key [/applications/{id}/access_key]
+
++ Parameters
+    + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
+
++ Model (application/json)
+
+        {
+            "accessKey" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
+        }
+
+### アクセスキーの取得 [GET]
+Note: このエンドポイントは検討を必要としています。
+#### アクセスに必要な権限
+- `applicationSpecial`
+
++ Response 200
+
+### アクセスキーを作成 [POST]
+Note: このエンドポイントは検討を必要としています。
+#### アクセスに必要な権限
+- `applicationSpecial`
+
++ Response 200
+
 # Group IceAuth
 
 ## ice_auth [/ice_auth]
@@ -185,7 +210,7 @@ HOST: https://api.frost-sns.ml/
 
 ## ice_auth/access_key [/ice_auth/access_key]
 
-### アクセスキーを作成 [POST]
+### 認証によりアクセスキーを作成 [POST]
 #### アクセスに必要な権限
 - 不要
 
@@ -201,11 +226,8 @@ HOST: https://api.frost-sns.ml/
                 "verificationCode" : "1234567890"
             }
 
-+ Response 200 (application/json)
-
-        {
-            "accessKey" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
-        }
++ Response 200
+    [applications/id/access_key][]
 
 # Group Posts
 
@@ -412,3 +434,37 @@ HOST: https://api.frost-sns.ml/
 
 + Response 200
     [users/id/timeline][]
+
+## users/id/followings [/users/{id}/followings]
+
+### 指定ユーザーのフォローの一覧を取得 [GET]
+
+#### アクセスに必要な権限
+- `userRead`
+
++ Response 200
+
+## users/id/followers [/users/{id}/followers]
+
+### 指定ユーザーのフォロワーの一覧を取得 [GET]
+
+#### アクセスに必要な権限
+- `userRead`
+
++ Response 200
+
+## users/id/follow [/users/{id}/follow]
+
+### 指定ユーザーをフォローする [POST]
+
+#### アクセスに必要な権限
+- `userWrite`
+
++ Response 200
+
+### 指定ユーザーへのフォローを解除する [DELETE]
+
+#### アクセスに必要な権限
+- `userWrite`
+
++ Response 200
