@@ -10,7 +10,7 @@ HOST: https://api.frost-sns.ml/
 # Group Account - 自身のアカウント
 ## account [/account]
 
-### アカウントを作成 [POST]
+### アカウントの作成 [POST]
 
 #### アクセスに必要な権限
 - `accountSpecial`
@@ -75,7 +75,7 @@ HOST: https://api.frost-sns.ml/
 + Parameters
     + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
 
-### アプリケーション情報を取得 [GET]
+### アプリケーション情報の取得 [GET]
 
 #### アクセスに必要な権限
 - `application`
@@ -134,7 +134,7 @@ HOST: https://api.frost-sns.ml/
 
 ## ice_auth/authorize [/ice_auth/authorize]
 
-### 認証を行いアクセスキーを作成 [POST]
+### 検証コード認証によるアクセスキーの作成 [POST]
 #### アクセスに必要な権限
 - 不要
 
@@ -158,7 +158,7 @@ HOST: https://api.frost-sns.ml/
 
 ## ice_auth/verification_code [/ice_auth/verification_code]
 
-### 検証コードを取得 [GET]
+### 検証コードの取得 [GET]
 #### 説明
 認証ホスト(Frost-Webなど)向けです。
 
@@ -180,7 +180,7 @@ HOST: https://api.frost-sns.ml/
 
 ## ice_auth/target_user [/ice_auth/target_user]
 
-### 認証の対象ユーザーを設定 [POST]
+### 検証コード認証の対象ユーザーの設定 [POST]
 #### 説明
 認証ホスト(Frost-Webなど)向けです。
 
@@ -208,7 +208,7 @@ HOST: https://api.frost-sns.ml/
 
 ## ice_auth/authorize_basic [/ice_auth/authorize_basic]
 
-### screenNameとpasswordを検証して、アクセスキーを作成 [POST]
+### screenName/password認証によるアクセスキーの作成 [POST]
 認証ホスト(Frost-Webなど)向けです。
 #### アクセスに必要な権限
 - `iceAuthHost`
@@ -239,7 +239,7 @@ HOST: https://api.frost-sns.ml/
 + Parameters
     + id: `abcdef123456abcdef123456` (string, required) - ポストID。
 
-### ポストを取得 [GET]
+### ポストの取得 [GET]
 
 #### アクセスに必要な権限
 - `postRead`
@@ -266,7 +266,7 @@ HOST: https://api.frost-sns.ml/
             }
         }
 
-### ステータスポストを作成 [POST]
+### ステータスポストの作成 [POST]
 
 #### アクセスに必要な権限
 - `postWrite`
@@ -296,7 +296,7 @@ HOST: https://api.frost-sns.ml/
             }
         }
 
-### アーティクルポストを作成 [POST]
+### アーティクルポストの作成 [POST]
 
 #### アクセスに必要な権限
 - `postWrite`
@@ -337,7 +337,7 @@ HOST: https://api.frost-sns.ml/
             }
         }
 
-### リンクポストを作成 [POST]
+### リンクポストの作成 [POST]
 
 #### アクセスに必要な権限
 - `postWrite`
@@ -423,7 +423,7 @@ HOST: https://api.frost-sns.ml/
             }
         ]
 
-### 指定ユーザーの最新の投稿一覧を取得 [GET]
+### 指定ユーザーのタイムラインの取得 [GET]
 
 #### アクセスに必要な権限
 - `userRead`, `postRead`
@@ -440,7 +440,7 @@ HOST: https://api.frost-sns.ml/
 
 ## users/id/followings [/users/{id}/followings]
 
-### 指定ユーザーのフォローの一覧を取得 [GET]
+### 指定ユーザーのフォローリストの取得 [GET]
 
 #### アクセスに必要な権限
 - `userRead`
@@ -449,7 +449,7 @@ HOST: https://api.frost-sns.ml/
 
 ## users/id/followers [/users/{id}/followers]
 
-### 指定ユーザーのフォロワーの一覧を取得 [GET]
+### 指定ユーザーのフォロワーリストの取得 [GET]
 
 #### アクセスに必要な権限
 - `userRead`
@@ -458,14 +458,14 @@ HOST: https://api.frost-sns.ml/
 
 ## users/id/follow [/users/{id}/follow]
 
-### 指定ユーザーをフォローする [POST]
+### 指定ユーザーをフォロー [POST]
 
 #### アクセスに必要な権限
 - `userWrite`
 
 + Response 200
 
-### 指定ユーザーへのフォローを解除する [DELETE]
+### 指定ユーザーへのフォローを解除 [DELETE]
 
 #### アクセスに必要な権限
 - `userWrite`
