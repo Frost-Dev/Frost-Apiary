@@ -3,7 +3,7 @@ HOST: https://api.frost-sns.ml/
 
 # Frost-API (日本語)
 
-- Frost-APIはすべてのFrostクライアントがFrostのコンテンツを利用するためのAPIです。
+- Frost-APIは公式アプリケーションを含むすべてのFrostクライアントがFrostのコンテンツを利用するためのAPIです。
 
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
@@ -111,29 +111,6 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [applications/id/application_key][]
 
-## applications/id/access_key [/applications/{id}/access_key]
-
-+ Parameters
-    + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
-
-+ Model (application/json)
-
-        {
-            "accessKey" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
-        }
-
-### アクセスキーの取得 [GET]
-#### アクセスに必要な権限
-- `applicationSpecial`
-
-+ Response 200
-
-### アクセスキーを作成 [POST]
-#### アクセスに必要な権限
-- `applicationSpecial`
-
-+ Response 200
-
 # Group IceAuth
 
 ## ice_auth [/ice_auth]
@@ -154,6 +131,30 @@ HOST: https://api.frost-sns.ml/
 
         {
             "iceAuthKey" : "abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123"
+        }
+
+## ice_auth/authorize [/ice_auth/authorize]
+
+### 認証を行いアクセスキーを作成 [POST]
+#### アクセスに必要な権限
+- 不要
+
++ Request (application/json)
+
+    + Headers
+
+            X-Ice-Auth-Key: abcdef123456abcdef123456-ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234.123
+
+    + Body
+
+            {
+                "verificationCode" : "1234567890"
+            }
+
++ Response 200
+
+        {
+            "accessKey": "58d01f91eaac651378b79b73-aa9870bd22dbfbed956419994824b8498556e8f568bca86fcbd8bc41eb04151a.67654"
         }
 
 ## ice_auth/verification_code [/ice_auth/verification_code]
@@ -206,11 +207,12 @@ HOST: https://api.frost-sns.ml/
             "targetUserId" : "abcdef123456abcdef123457"
         }
 
-## ice_auth/authorize [/ice_auth/authorize]
+## ice_auth/authorize_basic [/ice_auth/authorize_basic]
 
-### 認証を行いアクセスキーを作成 [POST]
+### screenNameとpasswordを検証して、アクセスキーを作成 [POST]
+認証ホスト(Frost-Webなど)向けです。
 #### アクセスに必要な権限
-- 不要
+- `iceAuthHost`
 
 + Request (application/json)
 
@@ -221,11 +223,15 @@ HOST: https://api.frost-sns.ml/
     + Body
 
             {
-                "verificationCode" : "1234567890"
+                "screenName" : "hogehoge",
+                "password": "piyopiyo"
             }
 
 + Response 200
-    [applications/id/access_key][]
+
+        {
+            "accessKey": "58d01f91eaac651378b79b73-aa9870bd22dbfbed956419994824b8498556e8f568bca86fcbd8bc41eb04151a.67654"
+        }
 
 # Group Posts
 
