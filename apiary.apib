@@ -7,8 +7,7 @@ HOST: https://api.frost-sns.ml/
 
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
-# Group Account
-
+# Group Account - 自身のアカウント
 ## account [/account]
 
 ### アカウントを作成 [POST]
@@ -28,7 +27,7 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [users/id][]
 
-# Group Applications
+# Group Applications - 連携アプリケーション
 
 ## applications [/applications]
 
@@ -111,7 +110,7 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [applications/id/application_key][]
 
-# Group IceAuth
+# Group IceAuth - アプリケーションの認証
 
 ## ice_auth [/ice_auth]
 
@@ -233,7 +232,7 @@ HOST: https://api.frost-sns.ml/
             "accessKey": "58d01f91eaac651378b79b73-aa9870bd22dbfbed956419994824b8498556e8f568bca86fcbd8bc41eb04151a.67654"
         }
 
-# Group Posts
+# Group Posts - 投稿記事
 
 ## posts/id [/posts/{id}]
 
@@ -352,7 +351,7 @@ HOST: https://api.frost-sns.ml/
 + Response 200
     [posts/post_link][]
 
-# Group Users
+# Group Users - ユーザー
 
 ## users/id [/users/{id}]
 
