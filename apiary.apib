@@ -34,19 +34,29 @@ HOST: https://api.frost-sns.ml/
 + Model (application/json)
 
         {
-            "application": {
+            "applications": [{
                 "createdAt": 1490034577,
                 "creatorId": "58d01f91eaac651378b79b72",
                 "description": "テスト用のアプリケーションです。",
                 "id": "58d01f91eaac651378b79b73",
-                "name": "Frost Test",
+                "name": "Frost TestA",
                 "permissions": [
                     "accountRead",
                     "userRead",
                     "postRead",
                     "postWrite"
                 ]
-            }
+            },
+            {
+                "createdAt": 1490034578,
+                "creatorId": "58d01f91eaac651378b79b72",
+                "description": "テスト用のアプリケーションです。",
+                "id": "58d01f91eaac651378b79b74",
+                "name": "Frost TestB",
+                "permissions": [
+                    "postWrite"
+                ]
+            }]
         }
 
 ### アプリケーションの作成 [POST]
@@ -68,9 +78,35 @@ HOST: https://api.frost-sns.ml/
         }
 
 + Response 200
+    [applications/id][]
+
+### 作成したすべてのアプリケーション情報の取得 [GET]
+
+#### アクセスに必要な権限
+- `application`
+
++ Response 200
     [applications][]
 
 ## applications/id [/applications/{id}]
+
++ Model (application/json)
+
+        {
+            "application": {
+                "createdAt": 1490034577,
+                "creatorId": "58d01f91eaac651378b79b72",
+                "description": "テスト用のアプリケーションです。",
+                "id": "58d01f91eaac651378b79b73",
+                "name": "Frost Test",
+                "permissions": [
+                    "accountRead",
+                    "userRead",
+                    "postRead",
+                    "postWrite"
+                ]
+            }
+        }
 
 + Parameters
     + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
@@ -81,18 +117,18 @@ HOST: https://api.frost-sns.ml/
 - `application`
 
 + Response 200
-    [applications][]
+    [applications/id][]
 
 ## applications/id/application_key [/applications/{id}/application_key]
-
-+ Parameters
-    + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
 
 + Model (application/json)
 
         {
             "applicationKey": "58d01f91eaac651378b79b73-aa9870bd22dbfbed956419994824b8498556e8f568bca86fcbd8bc41eb04151a.67654"
         }
+
++ Parameters
+    + id: `58d01f91eaac651378b79b73` (string, required) - アプリケーションID。
 
 ### アプリケーションキーの作成 [POST]
 
@@ -355,9 +391,6 @@ HOST: https://api.frost-sns.ml/
 
 ## users/id [/users/{id}]
 
-+ Parameters
-    + id: `abcdef123456abcdef123456` (string, required) - ユーザーID。
-
 + Model (application/json)
 
         {
@@ -369,6 +402,9 @@ HOST: https://api.frost-sns.ml/
                 "description": "ぴよぴよ"
             }
         }
+
++ Parameters
+    + id: `abcdef123456abcdef123456` (string, required) - ユーザーID。
 
 ### ユーザー情報の取得 [GET]
 
