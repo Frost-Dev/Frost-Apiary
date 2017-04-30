@@ -4,7 +4,7 @@ HOST: https://api.frost-sns.ml/
 # Frost-API (日本語)
 
 - Frost-APIは公式アプリケーションを含むすべてのFrostクライアントがFrostのコンテンツを利用するためのAPIです。
-
+- 全てのリクエストは`X-Api-Version`ヘッダーによってAPIのバージョンが指定されている必要があります。
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
 # Group Account - 自身のアカウント
@@ -388,6 +388,40 @@ HOST: https://api.frost-sns.ml/
     [posts/post_link][]
 
 # Group Users - ユーザー
+
+## users [/users?{screen_names}=screenName1,screenName2]
+
++ Model (application/json)
+
+        {
+            "users": [
+                {
+                    "id": "abcdef123456abcdef123456",
+                    "createdAt": 1234567890,
+                    "screenName": "screenName1",
+                    "name": "ほげほげ",
+                    "description": "ぴよぴよ"
+                },
+                {
+                    "id": "abcdef123456abcdef123457",
+                    "createdAt": 1234567891,
+                    "screenName": "screenName2",
+                    "name": "ほげほげ",
+                    "description": "ぴよぴよ"
+                }
+            ]
+        }
+
+### 一つ以上のscreenNameからユーザー情報を取得 [GET]
+
+#### アクセスに必要な権限
+- `userRead`
+
++ Parameters
+    + screen_names: `screenName1,screenName2` (string, required) - ユーザー名。
+
++ Response 200
+    [users][]
 
 ## users/id [/users/{id}]
 
