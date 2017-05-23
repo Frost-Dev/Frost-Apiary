@@ -6,8 +6,8 @@ HOST: https://api.frost-sns.ml/
 - 全てのリクエストは`X-Api-Version`ヘッダーによってAPIのバージョンが指定されている必要があります。
 - 権限を必要とするエンドポイントへのリクエストではヘッダーに `X-Application-Key` と `X-Access-Key` が付加されている必要があり、また、そのアプリケーションは指定された権限を持っている必要があります。
 
-# streaming APIについて
-Socket.ioから接続してください。
+# Streaming APIについて
+Socket.ioからREST APIと同じURLに接続してください。
 
 ## 認証方法について
 接続する際のオプションに`query.applicationKey`と`query.accessKey`を付加してアクセスすると認証されます。
@@ -21,16 +21,71 @@ REST APIをストリーム上から呼び出すことが出来ます。
   - request.headers: httpヘッダ
   - request.body: ペイロードデータ
 
+- リクエスト
+
+        {
+            "request": {
+                "method": "get",
+                "endpoint": "/users/1234hogehoge",
+                "headers": {
+                    "x-api-version": 1
+                }
+            }
+        }
+
+- レスポンス
+
+        {
+            "success": true,
+            "request": {
+                "method": "get",
+                "endpoint": "/users/1234hogehoge",
+                "headers": {
+                    "x-api-version": 1
+                }
+            },
+            "response": {
+                "user": { userEntity }
+            },
+            "statusCode": 200
+        }
+
 ### 'timeline-connect' メッセージ
 各種タイムラインのストリームに接続します。
 - パラメータ
   - type: タイムラインの種類 (public, home)
 
 
+- リクエスト
+
+        {
+            "type": "public"
+        }
+
+- レスポンス
+
+        {
+            "success": true,
+            "message": "connected public timeline"
+        }
+
 ### 'timeline-disconnect' メッセージ
 各種タイムラインのストリームから切断します。
 - パラメータ
   - type: タイムラインの種類 (public, home)
+
+- リクエスト
+
+        {
+            "type": "public"
+        }
+
+- レスポンス
+
+        {
+            "success": true,
+            "message": "disconnected public timeline"
+        }
 
 # Group Account
 自身のアカウント
