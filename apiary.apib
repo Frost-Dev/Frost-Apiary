@@ -17,6 +17,7 @@ Socket.ioからREST APIと同じURLに接続してください。
 ## 呼び出し可能なメッセージ
 ### 'rest' メッセージ
 REST APIをストリーム上から呼び出すことが出来ます。
+また、request.headersに`applicationKey`と`accessKey`を付加する必要はありません。
 - パラメータ
   - request.method: httpメソッド
   - request.endpoint: エンドポイント
