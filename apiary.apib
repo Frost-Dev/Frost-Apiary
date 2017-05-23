@@ -8,6 +8,8 @@ HOST: https://api.frost-sns.ml/
 
 # Streaming APIについて
 Socket.ioからREST APIと同じURLに接続してください。
+レスポンスは、呼び出したメッセージ名と同じメッセージ名で返却されます。
+リクエストが成功したかどうかの判定はsuccessパラメータを参照してください。
 
 ## 認証方法について
 接続する際のオプションに`query.applicationKey`と`query.accessKey`を付加してアクセスすると認証されます。
